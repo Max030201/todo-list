@@ -51,6 +51,8 @@ jobs:
     needs: [test, build]
     if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
     - uses: actions/checkout@v4
     - name: Setup Node
@@ -67,4 +69,4 @@ jobs:
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./dist
-        branch: gh-pages
+        publish_branch: gh-pages
